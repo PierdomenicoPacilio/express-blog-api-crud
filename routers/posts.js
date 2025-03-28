@@ -1,76 +1,21 @@
 const express = require('express');
-const posts = require('../data/posts');
+const postController = require('../controllers/postController.js');
 const router = express.Router();
 
 
 // INDEX
-
-router.get('/', (req, res) => {
-    res.send(posts);
-    console.log('Ecco i miei posts!');
-});
-
+router.get('/', postController.index);
 
 // SHOW
-
-router.get('/:id', (req, res) => {
-
-    const id = parseInt(req.params.id);
-    const post = posts.find(post => post.id === id);
-
-    if(!post){
-        console.log('post non trovato');
-        return res.status(404).json({
-            error: "Not Found",
-            message: "Post Non Trovato"
-        })
-    }
-
-    res.json(post);
-    console.log('Ecco il post: ' + post.title);
-});
-
-
+router.get('/:id', postController.show);
 
 // CREATE
-
-router.post('/', (req, res) => {
-    res.send('Creazione nuovo post!');
-    console.log('Creazione nuovo post!');
-});
-
-
+router.post('/', postController.create);
 
 // UPDATE
-
-router.put('/:id', (req, res) => {
-    const currentId = req.params.id;
-    res.send('Modifica del post ' + currentId + '!');
-    console.log('Modifica del post ' + currentId + '!');
-});
-
-
+router.put('/:id', postController.update);
 
 // DELETE
-
-router.delete('/:id', (req, res) => {
-
-    const id = parseInt(req.params.id);
-    const post = posts.find(post => post.id === id);
-
-    if(!post){
-        console.log('post non trovato');
-        return res.status(404).json({
-            error: "Not Found",
-            message: "Post Non Trovato"
-        })
-    }
-
-
-    posts.splice(posts.indexOf(post), 1);
-
-    res.sendStatus(204);
-    console.log(posts);
-});
+router.delete('/:id', postController.destroy);
 
 module.exports = router;
