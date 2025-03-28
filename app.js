@@ -10,7 +10,6 @@ app.use('/posts', postsRouter);
 
 
 // HOME
-
 app.get('/', (req, res) => {
     res.send('Benvenuto nel mio blog di cucina!');
     console.log('Benvenuto nel mio blog di cucina!');
@@ -19,7 +18,6 @@ app.get('/', (req, res) => {
 
 
 // LISTEN
-
 app.listen(port, () => {
     console.log('server in ascolto sulla porta = ' + port);
 });
