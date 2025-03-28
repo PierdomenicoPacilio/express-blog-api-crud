@@ -14,10 +14,20 @@ router.get('/', (req, res) => {
 // SHOW
 
 router.get('/:id', (req, res) => {
-    const currentId = req.params.id;
-    const currentPost = posts[Number(currentId)].title;
-    res.send('Ecco il post:' + currentPost);
-    console.log('Ecco il post:' + currentPost);
+
+    const id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
+
+    if(!post){
+        console.log('post non trovato');
+        return res.status(404).json({
+            error: "Not Found",
+            message: "Post Non Trovato"
+        })
+    }
+
+    res.json(post);
+    console.log('Ecco il post: ' + post.title);
 });
 
 
@@ -44,9 +54,23 @@ router.put('/:id', (req, res) => {
 // DELETE
 
 router.delete('/:id', (req, res) => {
-    const currentId = req.params.id;
-    res.send('Cancellazione del post ' + currentId + '!');
-    console.log('Cancellazione del post ' + currentId + '!');
+
+    const id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
+
+    if(!post){
+        console.log('post non trovato');
+        return res.status(404).json({
+            error: "Not Found",
+            message: "Post Non Trovato"
+        })
+    }
+
+
+    posts.splice(posts.indexOf(post), 1);
+
+    res.sendStatus(204);
+    console.log(posts);
 });
 
 module.exports = router;
