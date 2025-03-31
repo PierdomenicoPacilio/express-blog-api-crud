@@ -9,11 +9,14 @@ router.get('/', postController.index);
 // SHOW
 router.get('/:id', postController.show);
 
-// CREATE
-router.post('/', postController.create);
+// STORE
+router.post('/', postController.store);
 
 // UPDATE
 router.put('/:id', postController.update);
+
+// MODIFY
+router.patch('/:id', postController.modify);
 
 // DELETE
 router.delete('/:id', postController.destroy);

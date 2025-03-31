@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const port = 3500;
 
-const postsRouter = require('./routers/posts')
+const postsRouter = require('./routers/posts');
+
+app.use(express.json());
 
 app.use(express.static('public'));
 app.use('/posts', postsRouter);
