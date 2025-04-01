@@ -5,12 +5,10 @@ const port = 3500;
 // IMPORT ROUTERS
 const postsRouter = require('./routers/posts');
 // IMPORT MIDDLEWARES
-const checkTime = require('./middlewares/checkTime');
 const notFound = require('./middlewares/notFound');
 const errorsHandler = require('./middlewares/errorsHandler');
 
-app.use(checkTime);
-
+// APP USE
 app.use(express.json());
 
 app.use(express.static('public'));
