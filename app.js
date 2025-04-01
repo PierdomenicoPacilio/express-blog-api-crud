@@ -16,21 +16,17 @@ app.use(express.static('public'));
 // UTILIZZO ROUTER DEI POST
 app.use('/posts', postsRouter);
 
-
-
 // HOME
 app.get('/', (req, res) => {
     res.send('Benvenuto nel mio blog di cucina!');
     console.log('Benvenuto nel mio blog di cucina!');
 });
 
-
 // GESTIONE ERRORI
 // 404
 app.use(notFound);
 // 500
 app.use(errorsHandler);
-
 
 // LISTEN
 app.listen(port, () => {
