@@ -8,10 +8,12 @@ const postsRouter = require('./routers/posts');
 const notFound = require('./middlewares/notFound');
 const errorsHandler = require('./middlewares/errorsHandler');
 
-// APP USE
+// APP.USE
+// MIDDLEWARE PER DATI JSON
 app.use(express.json());
-
+// MIDDLEWARE PER IMMAGINI
 app.use(express.static('public'));
+// UTILIZZO ROUTER DEI POST
 app.use('/posts', postsRouter);
 
 

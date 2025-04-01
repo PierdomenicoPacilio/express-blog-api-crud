@@ -117,5 +117,4 @@ function destroy(req, res) {
     console.log(posts);
 
 };
-
 module.exports = { index, show, store, update, modify, destroy };
